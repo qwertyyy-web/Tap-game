@@ -14,7 +14,7 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 ORANGE = (255, 100, 0)
 
-# Загрузка картинок (обычные названия)
+# Загрузка картинок
 try:
     bg_image = pygame.image.load('playfon.png')
     bg_image = pygame.transform.scale(bg_image, (WIDTH, HEIGHT))
@@ -57,11 +57,11 @@ except Exception as e:
     print(f"Ошибка загрузки звуков: {e}")
     sound_click = sound_buy = sound_error = None
 
-# Загрузка и запуск фоновой музыки
+# Запуск фоновой музыки (MP3)
 try:
-    pygame.mixer.music.load('fonmuisk.wav')
-    pygame.mixer.music.set_volume(0.3)
-    pygame.mixer.music.play(-1)
+    pygame.mixer.music.load('fonmuisk.mp3')
+    pygame.mixer.music.set_volume(0.4) # Громкость на 40%, чтобы не перебивала клики
+    pygame.mixer.music.play(-1)        # -1 означает "играть по кругу"
 except Exception as e:
     print(f"Ошибка загрузки музыки: {e}")
 
