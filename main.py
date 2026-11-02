@@ -14,38 +14,34 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 ORANGE = (255, 100, 0)
 
-# Загрузка картинок (ТВОИ НАЗВАНИЯ)
+# Загрузка картинок (строго по твоему скриншоту)
 try:
     bg_image = pygame.image.load('playfon.png')
     bg_image = pygame.transform.scale(bg_image, (WIDTH, HEIGHT))
     
     shop_height = int(HEIGHT * 0.25)
-    shop_bg_image = pygame.image.load('shop2.png') # Твой фон магазина
+    shop_bg_image = pygame.image.load('shop2.png') 
     shop_bg_image = pygame.transform.scale(shop_bg_image, (WIDTH, shop_height))
     
-    # Если btn.png нет, используем up.png (красную стрелку) как кнопку START
-    try:
-        main_btn_orig = pygame.image.load('btn.png')
-    except:
-        main_btn_orig = pygame.image.load('up.png')
-        
+    # Твоя кнопка START (click.png)
+    main_btn_orig = pygame.image.load('click.png') 
     main_button_img = pygame.transform.scale(main_btn_orig, (350, 120))
     
-    original_coin = pygame.image.load('coin.png')
+    original_coin = pygame.image.load('coin.png') 
     particle_coin = pygame.transform.scale(original_coin, (40, 40))
     
-    # Если unup.png нет, используем up.png (серая стрелка будет красной)
+    # У тебя в списке только один "up.png". 
+    # Используем его для красной стрелки, а для серой делаем заглушку
     try:
-        icon_gray_orig = pygame.image.load('unup.png')
-    except:
         icon_gray_orig = pygame.image.load('up.png')
+        buy_icon_gray = pygame.transform.scale(icon_gray_orig, (60, 60))
+    except:
+        buy_icon_gray = pygame.Surface((60, 60)); buy_icon_gray.fill((100, 100, 100))
         
-    buy_icon_gray = pygame.transform.scale(icon_gray_orig, (60, 60))
-    
     icon_red_orig = pygame.image.load('up.png')
     buy_icon_red = pygame.transform.scale(icon_red_orig, (60, 60))
     
-    fire_orig = pygame.image.load('effect2.png') # Твой огонь
+    fire_orig = pygame.image.load('effect2.png') 
     fire_particle = pygame.transform.scale(fire_orig, (50, 50))
     
 except Exception as e:
@@ -58,7 +54,7 @@ except Exception as e:
     buy_icon_red = pygame.Surface((60, 60)); buy_icon_red.fill((255, 0, 0))
     fire_particle = pygame.Surface((50, 50)); fire_particle.fill((255, 100, 0))
 
-# Загрузка звуков
+# Загрузка звуков (строго по твоему скриншоту)
 try:
     sound_click = pygame.mixer.Sound('click.wav')
     sound_buy = pygame.mixer.Sound('up.mp3')
@@ -67,7 +63,7 @@ except Exception as e:
     print(f"Ошибка загрузки звуков: {e}")
     sound_click = sound_buy = sound_error = None
 
-# Запуск фоновой музыки
+# Запуск музыки
 try:
     pygame.mixer.music.load('fonmuisk.mp3')
     pygame.mixer.music.set_volume(0.4) 
