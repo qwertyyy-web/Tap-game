@@ -14,28 +14,38 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 ORANGE = (255, 100, 0)
 
-# Загрузка картинок
+# Загрузка картинок (ТВОИ НАЗВАНИЯ)
 try:
     bg_image = pygame.image.load('playfon.png')
     bg_image = pygame.transform.scale(bg_image, (WIDTH, HEIGHT))
     
     shop_height = int(HEIGHT * 0.25)
-    shop_bg_image = pygame.image.load('shopfon.png')
+    shop_bg_image = pygame.image.load('shop2.png') # Твой фон магазина
     shop_bg_image = pygame.transform.scale(shop_bg_image, (WIDTH, shop_height))
     
-    main_btn_orig = pygame.image.load('btn.png')
+    # Если btn.png нет, используем up.png (красную стрелку) как кнопку START
+    try:
+        main_btn_orig = pygame.image.load('btn.png')
+    except:
+        main_btn_orig = pygame.image.load('up.png')
+        
     main_button_img = pygame.transform.scale(main_btn_orig, (350, 120))
     
     original_coin = pygame.image.load('coin.png')
     particle_coin = pygame.transform.scale(original_coin, (40, 40))
     
-    icon_gray_orig = pygame.image.load('unup.png')
+    # Если unup.png нет, используем up.png (серая стрелка будет красной)
+    try:
+        icon_gray_orig = pygame.image.load('unup.png')
+    except:
+        icon_gray_orig = pygame.image.load('up.png')
+        
     buy_icon_gray = pygame.transform.scale(icon_gray_orig, (60, 60))
     
     icon_red_orig = pygame.image.load('up.png')
     buy_icon_red = pygame.transform.scale(icon_red_orig, (60, 60))
     
-    fire_orig = pygame.image.load('effect.png')
+    fire_orig = pygame.image.load('effect2.png') # Твой огонь
     fire_particle = pygame.transform.scale(fire_orig, (50, 50))
     
 except Exception as e:
@@ -57,11 +67,11 @@ except Exception as e:
     print(f"Ошибка загрузки звуков: {e}")
     sound_click = sound_buy = sound_error = None
 
-# Запуск фоновой музыки (MP3)
+# Запуск фоновой музыки
 try:
     pygame.mixer.music.load('fonmuisk.mp3')
-    pygame.mixer.music.set_volume(0.4) # Громкость на 40%, чтобы не перебивала клики
-    pygame.mixer.music.play(-1)        # -1 означает "играть по кругу"
+    pygame.mixer.music.set_volume(0.4) 
+    pygame.mixer.music.play(-1)        
 except Exception as e:
     print(f"Ошибка загрузки музыки: {e}")
 
